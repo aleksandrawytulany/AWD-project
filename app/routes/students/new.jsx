@@ -19,17 +19,15 @@ export async function action({ request, params }) {
 
 export async function loader() {
   const db = await connectDb();
-  return db.models.Folder.find();
+  return db.models.Student.find();
 }
 
-export default function CreateBook() {
+export default function CreateStudent() {
   const actionData = useActionData();
   return (
     <div>
-      {/* <Breadcrumb links={[{ to: "/books", title: "Books" }]} /> */}
-      <h1 className="text-2xl font-bold mb-10">Create snippet</h1>
+      <h1 className="text-2xl font-bold mb-10">Create student</h1>
       <Form method="post">
-        {/* snippet title */}
         <label htmlFor="fullName" className="block">
           Full Name
         </label>

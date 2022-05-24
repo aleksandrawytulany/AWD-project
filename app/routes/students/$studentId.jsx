@@ -4,22 +4,22 @@ import connectDb from "~/db/connectDb.server.js";
 
 export async function loader({ params }) {
   const db = await connectDb();
-  const book = await db.models.Book.findById(params.bookId);
-  if (!book) {
-    throw new Response(`Couldn't find book with id ${params.bookId}`, {
+  const student = await db.models.Student.findById(params.studentId);
+  if (!student) {
+    throw new Response(`Couldn't find student with id ${params.studentId}`, {
       status: 404,
     });
   }
-  return json(book);
+  return json(student);
 }
 
-export default function BookPage() {
-  const book = useLoaderData();
+export default function StudentPage() {
+  const student = useLoaderData();
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">{book.title}</h1>
+      <h1 className="text-2xl font-bold mb-4">{student.fullName}</h1>
       <code>
-        <pre>{JSON.stringify(book, null, 2)}</pre>
+        <pre>{JSON.stringify(student, null, 2)}</pre>
       </code>
     </div>
   );
