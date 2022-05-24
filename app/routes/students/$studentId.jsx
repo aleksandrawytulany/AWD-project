@@ -18,9 +18,9 @@ export default function StudentPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">{student.fullName}</h1>
-      <code>
+      {/* <code>
         <pre>{JSON.stringify(student, null, 2)}</pre>
-      </code>
+      </code> */}
     </div>
   );
 }

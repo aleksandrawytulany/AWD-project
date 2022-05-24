@@ -1,5 +1,5 @@
 import { Form, redirect, json, useActionData } from "@remix-run/node";
-import connectDb from "~/db/connectDb.server";
+import connectDb from "~/db/connectDb.server.js";
 
 export async function action({ request, params }) {
   const db = await connectDb();
@@ -7,7 +7,7 @@ export async function action({ request, params }) {
   const fullName = form.get("fullName");
 
   try {
-    const newStudent = await db.models.Snippet.create({ fullName });
+    const newStudent = await db.models.Student.create({ fullName });
     return redirect(`/students/${newStudent._id}`);
   } catch (error) {
     return json(
@@ -49,17 +49,3 @@ export default function CreateStudent() {
     </div>
   );
 }
-
-
-
-// export default function CreateSnippet() {
-//   const folders = useLoaderData();
-//   return (
-//     <div className="wrapper">
-//       <div className="wrapper-inner">
-//         <h1 className="h1">Add a new code snippet</h1>
-//         <SnippetForm folders={folders} />
-//       </div>
-//     </div>
-//   );
-// }
