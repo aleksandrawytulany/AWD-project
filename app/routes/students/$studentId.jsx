@@ -17,10 +17,7 @@ export default function StudentPage() {
   const student = useLoaderData();
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">{student.fullName}</h1>
-      {/* <code>
-        <pre>{JSON.stringify(student, null, 2)}</pre>
-      </code> */}
+      <h2 className="text-2xl font-bold mb-4">{student.fullName}</h2>
     </div>
   );
 }

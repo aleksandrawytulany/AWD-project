@@ -1,13 +1,13 @@
-import { Form, redirect, json, useActionData } from "@remix-run/node";
+import { redirect, json } from "@remix-run/node";
+import { useActionData, Form } from "@remix-run/react";
 import connectDb from "~/db/connectDb.server.js";
 
-export async function action({ request, params }) {
+export async function action({ request }) {
   const db = await connectDb();
   const form = await request.formData();
-  const fullName = form.get("fullName");
 
   try {
-    const newStudent = await db.models.Student.create({ fullName });
+    const newStudent = await db.models.Student.create({ fullName: form.get("fullName") });
     return redirect(`/students/${newStudent._id}`);
   } catch (error) {
     return json(
@@ -37,11 +37,11 @@ export default function CreateStudent() {
           defaultValue={actionData?.values.fullName}
           id="fullName"
           className={
-            actionData?.errors.fullName ? "border-2 border-red-500" : null
+            actionData?.errors?.fullName ? "border-2 border-red-500" : null
           }
         />
-        {actionData?.errors.fullName && (
-          <p className="text-red-500">{actionData.errors.fullName.message}</p>
+        {actionData?.errors?.fullName && (
+          <p className="text-red-500">{actionData?.errors?.fullName.message}</p>
         )}
 
         <button type="submit">Save</button>
