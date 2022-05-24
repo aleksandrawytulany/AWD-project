@@ -2,21 +2,15 @@ import { mongoose } from "mongoose";
 
 const { Schema } = mongoose;
 
-const bookSchema = new Schema(
+const studentSchema = new Schema(
   {
-    title: {
-      type: String,
-      required: true,
-      minLength: [3, "That's too short"],
-    },
-  },
-  { timestamps: true }
-);
+    fullName: String,
+  });
 
 export const models = [
   {
-    name: "Book",
-    schema: bookSchema,
-    collection: "books",
+    name: "Student",
+    schema: studentSchema,
+    collection: "students",
   },
 ];
