@@ -31,12 +31,12 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-slate-100 text-slate-800 font-sans p-4">
-        <header className="pb-3 mb-4 border-b-2">
-          <Link to="/" className="hover:underline text-blue-600">
+      <body className="bg-slate-100 text-gray-900 font-sans flex justify-between">
+        <header className=" h-full bg-white tp-0 left-0 fixed block px-10 py-20">
+          <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl">
             Home
           </Link>
-          <Link to="/students/new" className="ml-3 hover:underline text-blue-600">
+          <Link to="/students/new" className=" hover:opacity-70 block font-bold text-xl">
             New student
           </Link>
         </header>

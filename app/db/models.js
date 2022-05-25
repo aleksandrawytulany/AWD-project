@@ -5,6 +5,11 @@ const { Schema } = mongoose;
 const studentSchema = new Schema(
   {
     fullName: String,
+    bio: String,
+    linkedinLink: String,
+    websiteLink: String,
+    tags: String,
+    dateCreated: String,
   });
 
 export const models = [

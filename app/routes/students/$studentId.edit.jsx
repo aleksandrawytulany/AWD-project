@@ -1,8 +1,8 @@
+import { Form, useActionData } from "@remix-run/react";
 import { redirect, json } from "@remix-run/node";
-import { useActionData, Form } from "@remix-run/react";
-import connectDb from "~/db/connectDb.server.js";
+import connectDb from "~/db/connectDb.server";
 
-export async function action({ request }) {
+export async function action({ request, params }) {
   const db = await connectDb();
   const form = await request.formData();
   const fullName = form.get("fullName");
@@ -10,19 +10,19 @@ export async function action({ request }) {
   const linkedinLink = form.get("linkedinLink");
   const websiteLink = form.get("websiteLink");
   const tags = form.get("tags");
-  const date = new Date();
-  // const date_updated = Date.now();
-  let dateCreated = date.getFullYear() + "-" + date.toLocaleString("default", { month: "short"}) + "-" + date.getDate();
 
   try {
-    const newStudent = await db.models.Student.create({ 
-      fullName, 
-      bio,
-      linkedinLink,
-      websiteLink,
-      tags,
-      dateCreated, });
-    return redirect(`/students/${newStudent._id}`);
+    await db.models.Student.findByIdAndUpdate(
+      { _id: params.studentId },
+      {
+        fullName, 
+        bio,
+        linkedinLink,
+        websiteLink,
+        tags,
+      }
+    );
+    return redirect(`/students/${params.studentId}`);
   } catch (error) {
     return json(
       { errors: error.errors, values: Object.fromEntries(form) },
@@ -31,16 +31,20 @@ export async function action({ request }) {
   }
 }
 
-export async function loader() {
+export async function loader({ params }) {
   const db = await connectDb();
-  return db.models.Student.find();
+  const data = {
+    student: await db.models.Student.findById(params.studentId),
+  };
+  return data;
 }
 
-export default function CreateStudent() {
-  const actionData = useActionData();
+export default function EditStudent() {
+const actionData = useActionData();
+    // console.log(data);
   return (
     <div className=" mt-10 ml-48 w-full p-10">
-      <h1 className="text-2xl font-bold mb-10">Create student profile</h1>
+      <h1 className="text-2xl font-bold mb-10">Edit the student profile</h1>
       <Form method="post">
 
         {/* full name  */}
