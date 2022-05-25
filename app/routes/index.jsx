@@ -1,5 +1,6 @@
 import { useLoaderData, Link, Form } from "@remix-run/react";
-// import { useState } from 'react';
+import searchIcon from "~/assets/search-icon.svg";
+import arrowDown from "~/assets/arrow-down.svg";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function loader({ params, request }) {
@@ -50,9 +51,11 @@ export default function Index() {
   return (
     <div className=" mt-10 ml-48 w-full p-10">
       <h1 className=" text-3xl font-bold mb-4">Student Market</h1>
-      <Form method="GET">
+      <Form method="GET" className=" flex items-center">
         <input type="text" name="q" placeholder="Search" className="h-10 w-80 px-4 mr-3 focus:outline-violet-700" />
-        <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold hover:opacity-90 transition-all">Search</button>
+        <button type="submit">
+          <img src={searchIcon} alt="Search" />
+        </button>
       </Form><br />
 
       {/* <select name="" id="" value={selectedOption} className=" w-44 h-10 mb-6 ml-6" onChange={sortBy}>

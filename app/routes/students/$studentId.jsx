@@ -1,5 +1,7 @@
 import { useLoaderData, useParams, useCatch, Form, Link } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
+// import deleteIcon from "~/assets/delete-icon.svg";
+// import editIcon from "~/assets/edit-icon.svg";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function action({ params, request }) {

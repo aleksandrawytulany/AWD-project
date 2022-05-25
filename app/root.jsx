@@ -7,6 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import homeIcon from "~/assets/home-icon.svg";
+// import profileIcon from "~/assets/profile-icon.svg";
+// import logoutIcon from "~/assets/logout-icon.svg";
 import styles from "~/tailwind.css";
 
 export const links = () => [
@@ -34,7 +37,10 @@ export default function App() {
       <body className="bg-slate-100 text-gray-900 font-sans flex justify-between">
         <header className=" h-full bg-white tp-0 left-0 fixed block px-10 py-20">
           <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl">
-            Home
+            <div className=" flex items-center">
+              <img src={homeIcon} alt="Home" className=" mr-2" />
+              <h3>Home</h3>
+            </div>
           </Link>
           <Link to="/students/new" className=" hover:opacity-70 block font-bold text-xl">
             New student
