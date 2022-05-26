@@ -10,6 +10,7 @@ const studentSchema = new Schema(
     websiteLink: String,
     tags: String,
     dateCreated: String,
+    studentImg: String,
   });
 
 export const models = [

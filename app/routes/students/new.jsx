@@ -5,6 +5,7 @@ import connectDb from "~/db/connectDb.server.js";
 export async function action({ request }) {
   const db = await connectDb();
   const form = await request.formData();
+  const studentImg = form.get("studentImg");
   const fullName = form.get("fullName");
   const bio = form.get("bio");
   const linkedinLink = form.get("linkedinLink");
@@ -16,7 +17,8 @@ export async function action({ request }) {
 
   try {
     const newStudent = await db.models.Student.create({ 
-      fullName, 
+      studentImg,
+      fullName,
       bio,
       linkedinLink,
       websiteLink,
@@ -42,6 +44,25 @@ export default function CreateStudent() {
     <div className=" mt-10 ml-48 w-full p-10">
       <h1 className="text-2xl font-bold mb-10">Create student profile</h1>
       <Form method="post">
+        {/* profile picture */}
+        <label htmlFor="studentImg" className="block font-bold text-xs mb-2">
+          Image
+        </label>
+        <input
+          type="text"
+          name="studentImg"
+          defaultValue={actionData?.values.studentImg}
+          id="studentImg"
+          placeholder="Drop your picture here"
+          className={
+            actionData?.errors?.studentImg 
+            ? "border-2 border-red-500" 
+            : "h-10 w-80 px-4 focus:outline-violet-700"
+          }
+        /><br /><br />
+        {actionData?.errors?.studentImg && (
+          <p className="text-red-500">{actionData?.errors?.studentImg.message}</p>
+        )}
 
         {/* full name  */}
         <label htmlFor="fullName" className="block font-bold text-xs mb-2">

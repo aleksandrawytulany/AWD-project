@@ -1,10 +1,11 @@
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { redirect, json } from "@remix-run/node";
 import connectDb from "~/db/connectDb.server";
 
 export async function action({ request, params }) {
   const db = await connectDb();
   const form = await request.formData();
+  const studentImg = form.get("studentImg");
   const fullName = form.get("fullName");
   const bio = form.get("bio");
   const linkedinLink = form.get("linkedinLink");
@@ -15,6 +16,7 @@ export async function action({ request, params }) {
     await db.models.Student.findByIdAndUpdate(
       { _id: params.studentId },
       {
+        studentImg,
         fullName, 
         bio,
         linkedinLink,
@@ -41,12 +43,29 @@ export async function loader({ params }) {
 
 export default function EditStudent() {
 const actionData = useActionData();
-    // console.log(data);
+  const loaderData = useLoaderData();
+  console.log(loaderData);
+
   return (
     <div className=" mt-10 ml-48 w-full p-10">
       <h1 className="text-2xl font-bold mb-10">Edit the student profile</h1>
       <Form method="post">
-
+        {/* profile picture */}
+        <label htmlFor="studentImg" className="block font-bold text-xs mb-2">
+          Image
+        </label>
+        <input
+          type="text"
+          name="studentImg"
+          defaultValue={actionData?.values.studentImg}
+          id="studentImg"
+          placeholder="Drop your picture here"
+          className={
+            actionData?.errors?.studentImg 
+            ? "border-2 border-red-500" 
+            : "h-10 w-80 px-4 focus:outline-violet-700"
+          }
+        /><br /><br />
         {/* full name  */}
         <label htmlFor="fullName" className="block font-bold text-xs mb-2">
           Full Name
@@ -56,7 +75,7 @@ const actionData = useActionData();
           name="fullName"
           defaultValue={actionData?.values.fullName}
           id="fullName"
-          placeholder="fex. John Doe"
+          placeholder={loaderData.student.fullName}
           className={
             actionData?.errors?.fullName 
             ? "border-2 border-red-500" 
@@ -76,7 +95,7 @@ const actionData = useActionData();
           name="bio"
           defaultValue={actionData?.values.bio}
           id="bio"
-          placeholder="Tell us about yourself"
+          placeholder={loaderData.student.bio}
           className={
             actionData?.errors?.bio 
             ? "border-2 border-red-500" 
@@ -96,7 +115,7 @@ const actionData = useActionData();
           name="tags"
           defaultValue={actionData?.values.tags}
           id="tags"
-          placeholder="fex. UI, JavaScript, PHP"
+          placeholder={loaderData.student.tags}
           className={
             actionData?.errors?.tags 
             ? "border-2 border-red-500" 
@@ -116,7 +135,7 @@ const actionData = useActionData();
           name="linkedinLink"
           defaultValue={actionData?.values.linkedinLink}
           id="linkedinLink"
-          placeholder="Link your LinkedIn profile"
+          placeholder={loaderData.student.linkedinLink}
           className={
             actionData?.errors?.linkedinLink 
             ? "border-2 border-red-500" 
@@ -136,7 +155,7 @@ const actionData = useActionData();
           name="websiteLink"
           defaultValue={actionData?.values.websiteLink}
           id="websiteLink"
-          placeholder="Show off with your work"
+          placeholder={loaderData.student.websiteLink}
           className={
             actionData?.errors?.websiteLink 
             ? "border-2 border-red-500" 

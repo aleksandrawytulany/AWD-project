@@ -1,6 +1,6 @@
 import { useLoaderData, Link, Form } from "@remix-run/react";
 import searchIcon from "~/assets/search-icon.svg";
-import arrowDown from "~/assets/arrow-down.svg";
+// import arrowDown from "~/assets/arrow-down.svg";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function loader({ params, request }) {
@@ -71,18 +71,18 @@ export default function Index() {
               <Link
                 to={`/students/${student._id}`}
                 className=" text-black">
-                  <article className=" w-full mb-6 px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all">
-                    {/* student image */}
-                    <div>
-                      <img src="" alt="" />
+                  <article className=" w-full mb-6 px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all flex justify-between">
+                    <div className=" flex items-center">
+                      {/* student image */}
+                      <img src={student.studentImg} alt="Student" className=" h-24 w-24 object-cover rounded-full mr-6" />
+                      {/* student data */}
+                      <div>
+                        <h3 className=" text-xl font-bold ">{student.fullName}</h3>
+                        <p className=" italic ">{student.bio}</p><br />
+                        <p>{student.tags}</p>
+                      </div>
                     </div>
-                    {/* student data */}
-                    <div className=" flex justify-between items-center">
-                      <h3 className=" text-xl font-bold">{student.fullName}</h3>
-                      <p>{student.dateCreated}</p>
-                    </div>
-                    <p className=" italic">{student.bio}</p><br />
-                    <p>{student.tags}</p>
+                    <p>{student.dateCreated}</p>
                   </article>
               </Link>
             </li>
