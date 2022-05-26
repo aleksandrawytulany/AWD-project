@@ -1,4 +1,5 @@
 import { useLoaderData, Link, Form } from "@remix-run/react";
+import { useState } from "react";
 import searchIcon from "~/assets/search-icon.svg";
 // import arrowDown from "~/assets/arrow-down.svg";
 import connectDb from "~/db/connectDb.server.js";
@@ -20,43 +21,38 @@ export async function loader({ params, request }) {
 }
 
 export default function Index() {
-  const students = useLoaderData();
-  // const [selectedOption, setSelectedOption] = useState();
-  // let sortedStudents = [];
+  const [selectedOption, setSelectedOption] = useState();
+  let students = useLoaderData();
+  let sortedStudents = [];
 
-  // const sortBy = (e) => {
-  //   setSelectedOption(e.target.value);
+  const sortBy = (e) => {
+    setSelectedOption(e.target.value);
+    let sortedStudents = [];
+
+    if (e.target.value == "fullName") {
+      sortedStudents = students.sort((a, b) => a.fullName.localeCompare(b.fullName));
+    }
+    students = sortedStudents;
+  };
   
-  //     if(e.target.value == "fullName") {
-  //       sortedStudents = students.sort((a, b) => a.title.localeCompare(b.fullName)
-  //       );
-  //       // students = sortedStudents;
-  //     }
-
-  //     if (e.target.value == "dateUpdated") {
-  //       sortedStudents = students.sort(
-  //         (a, b) => { return a.date_updated > b.date_updated ? 1 : -1;}
-  //       );
-  //     }
-
-  //     if(e.target.value == "favourited") {
-  //       sortedStudents = students.sort(
-  //         (a, b) => { return a.favourite < b.favourite  ? 1 : -1;}
-  //       );
-  //       // return sortedStudents;
-  //   }
-  //   students = sortedStudents;
-  // }
-
   return (
     <div className=" mt-10 ml-48 w-full p-10">
       <h1 className=" text-3xl font-bold mb-4">Student Market</h1>
-      <Form method="GET" className=" flex items-center">
-        <input type="text" name="q" placeholder="Search" className="h-10 w-80 px-4 mr-3 focus:outline-violet-700" />
-        <button type="submit">
-          <img src={searchIcon} alt="Search" />
-        </button>
-      </Form><br />
+      <div className=" flex items-center mb-10">
+        {/* search */}
+        <Form method="GET" className=" flex items-center mr-4">
+          <input type="text" name="q" placeholder="Search" className="h-10 w-80 px-4 mr-2 focus:outline-violet-700" />
+          <button type="submit">
+            <img src={searchIcon} alt="Search" />
+          </button>
+        </Form>
+
+        {/* filter */}
+        <select name="" id="" value={selectedOption} className=" h-10 w-80 px-4 mr-3 focus:outline-violet-700" onChange={sortBy}>
+          <option value="value">Sort By</option>
+          <option value="fullName">Name</option>
+        </select>
+      </div>
 
       {/* <select name="" id="" value={selectedOption} className=" w-44 h-10 mb-6 ml-6" onChange={sortBy}>
         <option value="value">Sort By</option>

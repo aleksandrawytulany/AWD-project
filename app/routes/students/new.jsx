@@ -13,7 +13,7 @@ export async function action({ request }) {
   const tags = form.get("tags");
   const date = new Date();
   // const date_updated = Date.now();
-  let dateCreated = date.getFullYear() + "-" + date.toLocaleString("default", { month: "short"}) + "-" + date.getDate();
+  let dateCreated = date.getFullYear() + " " + date.toLocaleString("default", { month: "short"}) + " " + date.getDate();
 
   try {
     const newStudent = await db.models.Student.create({ 
