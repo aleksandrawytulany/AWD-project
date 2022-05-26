@@ -64,7 +64,7 @@ export default function Login() {
     );
   }
   return (
-    <div className=" mt-10 ml-48 w-full p-10">
+    <div className=" ml-64 w-full px-10 pt-32">
       <h1 className="text-2xl font-bold mb-10">Login to your account</h1>
       {actionData?.errorMessage ? (
         <p className="text-red-500 font-bold my-3">{actionData.errorMessage}</p>

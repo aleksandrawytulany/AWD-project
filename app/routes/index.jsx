@@ -36,7 +36,7 @@ export default function Index() {
   };
   
   return (
-    <div className=" ml-48 w-full px-10 pt-32">
+    <div className=" ml-64 w-full px-10 pt-32">
       <h1 className=" text-3xl font-bold mb-4">Student Market</h1>
       <div className=" flex items-center mb-10">
         {/* search */}

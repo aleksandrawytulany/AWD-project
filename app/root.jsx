@@ -50,30 +50,32 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-slate-100 text-gray-900 font-sans flex justify-between">
-        <nav className=" w-full bg-white shadow-md h-20 text-right fixed p-2 flex items-center justify-end">
+        <nav className=" w-full bg-white shadow-md h-20 text-right fixed py-2 px-10 flex items-center justify-end">
           {user ? (
-            <nav className=" w-full bg-white shadow-md h-20 text-right fixed p-2 flex items-center justify-end">
-              <p>Hi user!</p>
-            </nav>
-          ) : (
-            <nav className=" w-full bg-white shadow-md h-20 text-right fixed p-2 flex items-center justify-end">
-            </nav>
+              <strong className=" text-violet-700">Hi there! You're logged in now 🧑🏼‍🎓</strong>
+          ) : null (  
+        
           // <Link to="/signup" className="underline">
           //   Sign up
           // </Link>
           )
         }
         </nav>
-        <header className=" h-full bg-white tp-0 left-0 fixed block px-10 py-20 shadow-xl">
-          <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl">
-            <div className=" flex items-center">
-              <img src={homeIcon} alt="Home" className=" mr-2" />
-              <h3>Home</h3>
-            </div>
-          </Link>
-          <Link to="/students/new" className=" hover:opacity-70 block mb-4 font-bold text-xl">
-            New student
-          </Link>
+        <header className=" h-full bg-white tp-0 left-0 fixed px-10 py-20 shadow-xl flex flex-col justify-between">
+          <div>
+            <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl">
+              <div className=" flex items-center">
+                <img src={homeIcon} alt="Home" className=" mr-2" />
+                <h3>Home</h3>
+              </div>
+            </Link>
+            <Link to="/students/new" className=" hover:opacity-70 block mb-4 font-bold text-xl">
+              <div className=" flex items-center">
+                <img src={homeIcon} alt="Home" className=" mr-2" />
+                <h3>New student</h3>
+              </div>
+            </Link>
+          </div>
           <Form method="post" action="/logout">
             <button type="submit" className=" flex items-center hover:opacity-70 font-bold text-xl">
               <img src={logoutIcon} alt="Home" className=" mr-2" />

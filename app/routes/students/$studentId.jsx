@@ -43,7 +43,7 @@ export default function StudentPage() {
 
   const params = useParams();
   return (
-    <div className=" mt-10 ml-48 w-full p-10">
+    <div className=" ml-64 w-full px-10 pt-32">
       <Breadcrumb links={[{ to: "/", title: "Back to student list" }]} />
       <img
         src={loaderData?.student?.studentImg}
