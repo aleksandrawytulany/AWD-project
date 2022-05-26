@@ -1,9 +1,12 @@
 import { redirect, json } from "@remix-run/node";
 import { useActionData, Form } from "@remix-run/react";
+import { getSession } from "~/sessions.js";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function action({ request }) {
   const db = await connectDb();
+  const session = await getSession(request.headers.get("Cookie"));
+  const userId = session.get("userId");
   const form = await request.formData();
   const studentImg = form.get("studentImg");
   const fullName = form.get("fullName");
@@ -12,24 +15,25 @@ export async function action({ request }) {
   const websiteLink = form.get("websiteLink");
   const tags = form.get("tags");
   const date = new Date();
+  const creatorId = userId;
   // const date_updated = Date.now();
-  let dateCreated = date.getFullYear() + " " + date.toLocaleString("default", { month: "short"}) + " " + date.getDate();
+  let dateCreated =
+    date.getFullYear() + " " + date.toLocaleString("default", { month: "short" }) + " " + date.getDate();
 
   try {
-    const newStudent = await db.models.Student.create({ 
+    const newStudent = await db.models.Student.create({
       studentImg,
       fullName,
       bio,
       linkedinLink,
       websiteLink,
       tags,
-      dateCreated, });
+      dateCreated,
+      creatorId,
+    });
     return redirect(`/students/${newStudent._id}`);
   } catch (error) {
-    return json(
-      { errors: error.errors, values: Object.fromEntries(form) },
-      { status: 400 }
-    );
+    return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
   }
 }
 
@@ -55,11 +59,13 @@ export default function CreateStudent() {
           id="studentImg"
           placeholder="Drop your picture here"
           className={
-            actionData?.errors?.studentImg 
-            ? "border-2 border-red-500" 
-            : "h-10 w-80 px-4 focus:outline-violet-700"
+            actionData?.errors?.studentImg
+              ? "border-2 border-red-500"
+              : "h-10 w-80 px-4 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
+        <br />
+        <br />
         {actionData?.errors?.studentImg && (
           <p className="text-red-500">{actionData?.errors?.studentImg.message}</p>
         )}
@@ -75,11 +81,13 @@ export default function CreateStudent() {
           id="fullName"
           placeholder="fex. John Doe"
           className={
-            actionData?.errors?.fullName 
-            ? "border-2 border-red-500" 
-            : "h-10 w-80 px-4 focus:outline-violet-700"
+            actionData?.errors?.fullName
+              ? "border-2 border-red-500"
+              : "h-10 w-80 px-4 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
+        <br />
+        <br />
         {actionData?.errors?.fullName && (
           <p className="text-red-500">{actionData?.errors?.fullName.message}</p>
         )}
@@ -95,14 +103,12 @@ export default function CreateStudent() {
           id="bio"
           placeholder="Tell us about yourself"
           className={
-            actionData?.errors?.bio 
-            ? "border-2 border-red-500" 
-            : "h-10 w-80 px-4 focus:outline-violet-700"
+            actionData?.errors?.bio ? "border-2 border-red-500" : "h-10 w-80 px-4 focus:outline-violet-700"
           }
-        /><br /><br />
-        {actionData?.errors?.bio && (
-          <p className="text-red-500">{actionData?.errors?.bio.message}</p>
-        )}
+        />
+        <br />
+        <br />
+        {actionData?.errors?.bio && <p className="text-red-500">{actionData?.errors?.bio.message}</p>}
 
         {/* tags */}
         <label htmlFor="tags" className="block font-bold text-xs mb-2">
@@ -115,14 +121,14 @@ export default function CreateStudent() {
           id="tags"
           placeholder="fex. UI, JavaScript, PHP"
           className={
-            actionData?.errors?.tags 
-            ? "border-2 border-red-500" 
-            : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
+            actionData?.errors?.tags
+              ? "border-2 border-red-500"
+              : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
-        /><br /><br />
-        {actionData?.errors?.tags && (
-          <p className="text-red-500">{actionData?.errors?.tags.message}</p>
-        )}
+        />
+        <br />
+        <br />
+        {actionData?.errors?.tags && <p className="text-red-500">{actionData?.errors?.tags.message}</p>}
 
         {/* LinkedIn link */}
         <label htmlFor="linkedinLink" className="block font-bold text-xs mb-2">
@@ -135,11 +141,13 @@ export default function CreateStudent() {
           id="linkedinLink"
           placeholder="Link your LinkedIn profile"
           className={
-            actionData?.errors?.linkedinLink 
-            ? "border-2 border-red-500" 
-            : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
+            actionData?.errors?.linkedinLink
+              ? "border-2 border-red-500"
+              : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
+        <br />
+        <br />
         {actionData?.errors?.linkedinLink && (
           <p className="text-red-500">{actionData?.errors?.linkedinLink.message}</p>
         )}
@@ -155,17 +163,20 @@ export default function CreateStudent() {
           id="websiteLink"
           placeholder="Show off with your work"
           className={
-            actionData?.errors?.websiteLink 
-            ? "border-2 border-red-500" 
-            : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
+            actionData?.errors?.websiteLink
+              ? "border-2 border-red-500"
+              : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
+        <br />
+        <br />
         {actionData?.errors?.websiteLink && (
           <p className="text-red-500">{actionData?.errors?.websiteLink.message}</p>
         )}
 
-        <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold block">Save</button>
-
+        <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold block">
+          Save
+        </button>
       </Form>
     </div>
   );

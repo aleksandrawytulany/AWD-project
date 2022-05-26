@@ -2,15 +2,15 @@ import { mongoose } from "mongoose";
 
 const { Schema } = mongoose;
 
-const studentSchema = new Schema(
-  {
-    fullName: String,
-    bio: String,
-    linkedinLink: String,
-    websiteLink: String,
-    tags: String,
-    dateCreated: String,
-    studentImg: String,
+const studentSchema = new Schema({
+  fullName: String,
+  bio: String,
+  linkedinLink: String,
+  websiteLink: String,
+  tags: String,
+  dateCreated: String,
+  studentImg: String,
+  creatorId: String,
 });
 
 const userSchema = new Schema(
