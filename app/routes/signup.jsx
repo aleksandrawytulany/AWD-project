@@ -70,7 +70,7 @@ export default function Signup() {
 
   return (
     <div className=" flex flex-col justify-center items-center w-full h-screen">
-      <h1 className="text-2xl font-bold mb-10">✏️ Sign up for the platform</h1>
+      <h1 className="text-2xl font-bold mb-10">✏️ Sign up to the platform</h1>
       {actionData?.errorMessage ? (
         <p className="text-red-500 font-bold my-3">{actionData.errorMessage}</p>
       ) : null}

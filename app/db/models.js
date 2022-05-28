@@ -15,6 +15,7 @@ const studentSchema = new Schema({
     type: String,
     required: true,
     minLength: [50, "Write a bit more"],
+    maxLength: [150, "Your bio can be max 150 characters"],
   },
   linkedinLink: {
     type: String,

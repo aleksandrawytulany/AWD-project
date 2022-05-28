@@ -61,7 +61,7 @@ const actionData = useActionData();
           name="studentImg"
           defaultValue={actionData?.values.studentImg}
           id="studentImg"
-          placeholder="Drop your picture here"
+          placeholder="Drop your picture url here"
           className={
             actionData?.errors?.studentImg 
             ? "border-2 border-red-500" 
@@ -98,7 +98,7 @@ const actionData = useActionData();
           name="title"
           defaultValue={loaderData.student.title}
           id="title"
-          placeholder="fex. Web Developer"
+          placeholder={loaderData.student.title}
           className={
             actionData?.errors?.ttile
               ? "border-2 border-red-500"

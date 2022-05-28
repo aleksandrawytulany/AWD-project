@@ -60,7 +60,7 @@ export default function CreateStudent() {
           name="studentImg"
           defaultValue={actionData?.values.studentImg}
           id="studentImg"
-          placeholder="Drop your picture here"
+          placeholder="Drop your picture url here"
           className={
             actionData?.errors?.studentImg
               ? "border-2 border-red-500"
