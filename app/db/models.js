@@ -3,13 +3,36 @@ import { mongoose } from "mongoose";
 const { Schema } = mongoose;
 
 const studentSchema = new Schema({
-  fullName: String,
-  bio: String,
-  linkedinLink: String,
-  websiteLink: String,
-  tags: String,
+  fullName: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  bio: {
+    type: String,
+    required: true,
+    minLength: [50, "Write a bit more"],
+  },
+  linkedinLink: {
+    type: String,
+    required: true,
+  },
+  websiteLink: {
+    type: String,
+    required: true,
+  },
+  tags: {
+    type: String,
+    required: true,
+  },
   dateCreated: String,
-  studentImg: String,
+  studentImg: {
+    type: String,
+    required: true,
+  },
   creatorId: String,
 });
 
@@ -23,7 +46,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "You need a password"],
-      minLength: [8, "That's too short"],
+      minLength: [4, "That's too short"],
     },
   },
   { timestamps: true }

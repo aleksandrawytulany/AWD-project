@@ -11,7 +11,7 @@ export default function Breadcrumb({ links = [] }) {
           {i !== 0 && (
             <span className="inline-block mx-2 text-gray-400">/</span>
           )}
-          <Link to={link.to} className=" text-violet-700 hover:underline transition-all">
+          <Link to={link.to} className=" font-bold text-violet-700 hover:underline transition-all">
             {link.title}
           </Link>
         </React.Fragment>

@@ -64,11 +64,11 @@ export default function Login() {
     );
   }
   return (
-    <div className=" ml-64 w-full px-10 pt-32">
-      <h1 className="text-2xl font-bold mb-10">Login to your account</h1>
+    <div className=" flex flex-col justify-center items-center w-full h-screen">
+      <h1 className="text-2xl font-bold mb-10">👩‍🎓 Login to your account</h1>
       {actionData?.errorMessage ? (
         <p className="text-red-500 font-bold my-3">{actionData.errorMessage}</p>
-      ) : null}
+      ) : null }
       <Form method="post" className="text-inherit">
           {/* username */}
         <label htmlFor="username" className="block font-bold text-xs mb-2">
@@ -93,12 +93,12 @@ export default function Login() {
           placeholder="Password"
           className="block h-10 w-80 px-4 mr-3 focus:outline-violet-700"
         /><br />
-        <div className="flex flex-row items-center gap-3">
-          <button type="submit" className="px-8 py-2 rounded-md bg-violet-700 text-white font-bold block">
+        <div className="flex flex-row items-center justify-center">
+          <button type="submit" className="px-8 py-2 rounded-md bg-violet-700 text-white font-bold block hover:opacity-80 transition-all">
             Log in
           </button>
 
-          <Link to="/signup" className="underline">
+          <Link to="/signup" className="px-8 py-2 rounded-md text-violet-700 font-bold">
             Sign up
           </Link>
         </div>

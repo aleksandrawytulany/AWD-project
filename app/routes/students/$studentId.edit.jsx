@@ -7,6 +7,7 @@ export async function action({ request, params }) {
   const form = await request.formData();
   const studentImg = form.get("studentImg");
   const fullName = form.get("fullName");
+  const title = form.get("title");
   const bio = form.get("bio");
   const linkedinLink = form.get("linkedinLink");
   const websiteLink = form.get("websiteLink");
@@ -17,7 +18,8 @@ export async function action({ request, params }) {
       { _id: params.studentId },
       {
         studentImg,
-        fullName, 
+        fullName,
+        title,
         bio,
         linkedinLink,
         websiteLink,
@@ -81,10 +83,32 @@ const actionData = useActionData();
             ? "border-2 border-red-500" 
             : "h-10 w-80 px-4 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
         {actionData?.errors?.fullName && (
           <p className="text-red-500">{actionData?.errors?.fullName.message}</p>
         )}
+        <br /><br />
+
+        {/* student title */}
+        <label htmlFor="title" className="block font-bold text-xs mb-2">
+          Title
+        </label>
+        <input
+          type="text"
+          name="title"
+          defaultValue={loaderData.student.title}
+          id="title"
+          placeholder="fex. Web Developer"
+          className={
+            actionData?.errors?.ttile
+              ? "border-2 border-red-500"
+              : "h-10 w-80 px-4 focus:outline-violet-700"
+          }
+        />
+        {actionData?.errors?.title && (
+          <p className="text-red-500">{actionData?.errors?.title.message}</p>
+        )}
+        <br /><br />
 
         {/* bio description */}
         <label htmlFor="bio" className="block font-bold text-xs mb-2">
@@ -101,10 +125,11 @@ const actionData = useActionData();
             ? "border-2 border-red-500" 
             : "h-10 w-80 px-4 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
         {actionData?.errors?.bio && (
           <p className="text-red-500">{actionData?.errors?.bio.message}</p>
         )}
+        <br /><br />
 
         {/* tags */}
         <label htmlFor="tags" className="block font-bold text-xs mb-2">
@@ -121,10 +146,11 @@ const actionData = useActionData();
             ? "border-2 border-red-500" 
             : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
         {actionData?.errors?.tags && (
           <p className="text-red-500">{actionData?.errors?.tags.message}</p>
         )}
+        <br /><br />
 
         {/* LinkedIn link */}
         <label htmlFor="linkedinLink" className="block font-bold text-xs mb-2">
@@ -141,10 +167,11 @@ const actionData = useActionData();
             ? "border-2 border-red-500" 
             : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
         {actionData?.errors?.linkedinLink && (
           <p className="text-red-500">{actionData?.errors?.linkedinLink.message}</p>
         )}
+        <br /><br />
 
         {/* website link */}
         <label htmlFor="websiteLink" className="block font-bold text-xs mb-2">
@@ -161,10 +188,11 @@ const actionData = useActionData();
             ? "border-2 border-red-500" 
             : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
-        /><br /><br />
+        />
         {actionData?.errors?.websiteLink && (
           <p className="text-red-500">{actionData?.errors?.websiteLink.message}</p>
         )}
+        <br /><br />
 
         <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold block">Save</button>
 

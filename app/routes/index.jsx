@@ -1,18 +1,27 @@
+import { redirect } from "@remix-run/node";
 import { useLoaderData, Link, Form } from "@remix-run/react";
 import { useState } from "react";
-import searchIcon from "~/assets/search-icon.svg";
-// import arrowDown from "~/assets/arrow-down.svg";
 import connectDb from "~/db/connectDb.server.js";
+import { getSession } from "~/sessions.js";
 
 export async function loader({ params, request }) {
   const url = new URL(request.url);
   const querry = url.searchParams.get("q");
   const db = await connectDb();
   const students = await db.models.Student.find();
+  const session = await getSession(request.headers.get("Cookie"));
+
+  if(session.get("userId")) { 
+    
+  } else {
+    return redirect("/login");
+  }
+
 
   if(querry) {
     const searchName = await db.models.Student.find( {
       fullName: new RegExp(querry, "i"),
+      tags: new RegExp(querry, "i"),
     });
     return searchName;
   }
@@ -32,6 +41,7 @@ export default function Index() {
     if (e.target.value == "fullName") {
       sortedStudents = students.sort((a, b) => a.fullName.localeCompare(b.fullName));
     }
+
     students = sortedStudents;
   };
   
@@ -42,23 +52,18 @@ export default function Index() {
         {/* search */}
         <Form method="GET" className=" flex items-center mr-4">
           <input type="text" name="q" placeholder="Search" className="h-10 w-80 px-4 mr-2 focus:outline-violet-700" />
-          <button type="submit">
-            <img src={searchIcon} alt="Search" />
+          <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold hover:opacity-80 transition-all">
+            {/* <img src={searchIcon} alt="Search" /> */}
+            🔍 Search
           </button>
         </Form>
 
         {/* filter */}
-        <select name="" id="" value={selectedOption} className=" h-10 w-80 px-4 mr-3 focus:outline-violet-700" onChange={sortBy}>
+        <select name="" id="" value={selectedOption} className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={sortBy}>
           <option value="value">Sort By</option>
           <option value="fullName">Name</option>
         </select>
       </div>
-
-      {/* <select name="" id="" value={selectedOption} className=" w-44 h-10 mb-6 ml-6" onChange={sortBy}>
-        <option value="value">Sort By</option>
-        <option value="fullName">Name</option>
-        <option value="dateUpdated" defaultValue="dateUpdated">Date</option>
-      </select><br /> */}
 
       <ul>
         {students.map((student) => {
@@ -73,12 +78,17 @@ export default function Index() {
                       <img src={student.studentImg} alt="Student" className=" h-24 w-24 object-cover rounded-full mr-6" />
                       {/* student data */}
                       <div>
-                        <h3 className=" text-xl font-bold ">{student.fullName}</h3>
+                        <h3 className=" text-xl font-bold ">{student.fullName} <span className=" font-normal text-base">{student?.title}</span></h3>
                         <p className=" italic ">{student.bio}</p><br />
-                        <p>{student.tags}</p>
+                          {student.tags.split(",").map(( tag, key ) => {
+                            // console.log(tag);
+                            return (
+                              <p key={key} className=" px-2 py-1 bg-violet-300 text-violet-700 font-bold text-xs rounded-lg inline mr-2">{tag}</p>
+                            ) 
+                          })}
                       </div>
                     </div>
-                    <p>{student.dateCreated}</p>
+                    <p className=" text-slate-500">{student.dateCreated}</p>
                   </article>
               </Link>
             </li>
