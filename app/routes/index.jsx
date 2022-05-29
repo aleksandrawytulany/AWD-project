@@ -46,13 +46,13 @@ export default function Index() {
   };
   
   return (
-    <div className=" ml-64 w-full px-10 pt-32">
-      <h1 className=" text-3xl font-bold mb-4">Student Market</h1>
-      <div className=" flex items-center mb-10">
+    <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
+      <h1 className=" text-2xl md:text-3xl font-bold mb-4">Student Market</h1>
+      <div className=" flex flex-col items-start md:items-center mb-10 md:flex-row">
         {/* search */}
-        <Form method="GET" className=" flex items-center mr-4">
-          <input type="text" name="q" placeholder="Search" className="h-10 w-80 px-4 mr-2 focus:outline-violet-700" />
-          <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold hover:opacity-80 transition-all">
+        <Form method="GET" className=" flex items-center md:mr-4 mb-2 md:mb-0">
+          <input type="text" name="q" placeholder="Search" className=" w-56 h-10 lg:w-80 px-4 mr-2 focus:outline-violet-700" />
+          <button type="submit" className=" h-10 px-4 md:px-8 py-2 rounded-md bg-violet-700 text-white font-bold flex-nowrap hover:opacity-80 transition-all">
             {/* <img src={searchIcon} alt="Search" /> */}
             🔍 Search
           </button>
@@ -72,8 +72,8 @@ export default function Index() {
               <Link
                 to={`/students/${student._id}`}
                 className=" text-black">
-                  <article className=" w-full mb-6 px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all flex justify-between">
-                    <div className=" flex items-center">
+                  <article className=" w-full mb-6 px-4 md:px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all flex justify-between">
+                    <div className=" flex flex-col items-start md:flex-row md:items-center">
                       {/* student image */}
                       <img src={student.studentImg} alt="Student" className=" h-24 w-24 object-cover rounded-full mr-6" />
                       {/* student data */}

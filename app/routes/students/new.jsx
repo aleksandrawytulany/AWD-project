@@ -47,7 +47,7 @@ export async function loader( request ) {
 export default function CreateStudent() {
   const actionData = useActionData();
   return (
-    <div className=" ml-64 w-full px-10 pt-32">
+    <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
       <h1 className="text-2xl font-bold mb-10">Create student profile</h1>
       <Form method="post">
 

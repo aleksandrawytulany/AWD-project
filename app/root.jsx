@@ -9,13 +9,9 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import { useState } from "react";
 import { json } from "@remix-run/node";
 import connectDb from "~/db/connectDb.server.js";
-import homeIcon from "~/assets/home-icon.svg";
-// import profileIcon from "~/assets/profile-icon.svg";
-import logoutIcon from "~/assets/logout-icon.svg";
-import studentPic from "~/assets/student-pic.svg";
-import addIcon from "~/assets/add-icon.svg";
 import styles from "~/tailwind.css";
 import { getSession } from "~/sessions.js";
 
@@ -44,6 +40,8 @@ export async function loader({ request }) {
 
 export default function App() {
   const user = useLoaderData();
+  const [menuOpen, setMenuOpen] = useState();
+
   // console.log(user);
   return (
     <html lang="en">
@@ -55,15 +53,24 @@ export default function App() {
         {user ? (
         <div>
           <nav className=" w-full bg-white shadow-md h-20 text-right fixed py-2 px-10 flex items-center justify-end">
-            <strong className=" text-violet-700">Hi there! You're logged in now 🧑🏼‍🎓</strong>
+            <span className=" lg:hidden block ml-auto mr-0 float-left font-bold text-violet-700" onClick={() => setMenuOpen(true)}>Menu</span>
+            <strong className=" hidden lg:inline text-violet-700">Hi there! You're logged in now 🧑🏼‍🎓</strong>
           </nav>
-          <header className=" h-full bg-white tp-0 left-0 fixed px-10 py-20 shadow-xl flex flex-col justify-between">
+          <header className= {
+            menuOpen 
+              ? "h-full bg-white tp-0 left-0 fixed px-8 md:px-10 py-20 shadow-xl flex flex-col justify-between w-full md:w-auto"
+              : "hidden h-full bg-white tp-0 left-0 fixed px-10 py-20 shadow-xl lg:flex flex-col justify-between"
+          }>
               <div>
-                <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl">
+              <span onClick={() => setMenuOpen(false)} className={menuOpen ? "block ml-auto mr-0 float-right" : "hidden"}>❌</span><br /><br />
+                <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl" onClick={() => setMenuOpen(false)}>
                   <h3>🏠 Home</h3>
                 </Link>
-                <Link to="/students/new" className=" hover:opacity-70 block mb-4 font-bold text-xl">
+                <Link to="/students/new" className=" hover:opacity-70 block mb-4 font-bold text-xl" onClick={() => setMenuOpen(false)}>
                   <h3>➕ New student</h3>
+                </Link>
+                <Link to="/account" className=" hover:opacity-70 block mb-4 font-bold text-xl" onClick={() => setMenuOpen(false)}>
+                  <h3>👩‍🎓 Account</h3> 
                 </Link>
                 {/* <img src={studentPic} alt="Student graphic" className=" block mb-4 mt-20 w-44" /> */}
               </div>

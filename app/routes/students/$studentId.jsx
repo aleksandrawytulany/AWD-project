@@ -45,7 +45,7 @@ export default function StudentPage() {
 
   const params = useParams();
   return (
-    <div className=" ml-64 w-full px-10 pt-32">
+    <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
       <Breadcrumb links={[{ to: "/", title: "👈 Back to student list" }]} />
       <div className=" w-full mb-6 px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all">
       <img
