@@ -20,8 +20,7 @@ export async function loader({ params, request }) {
 
   if(querry) {
     const searchName = await db.models.Student.find( {
-      fullName: new RegExp(querry, "i"),
-      tags: new RegExp(querry, "i"),
+      fullName: new RegExp(querry, "i")
     });
     return searchName;
   }
@@ -42,12 +41,17 @@ export default function Index() {
       sortedStudents = students.sort((a, b) => a.fullName.localeCompare(b.fullName));
     }
 
+    if (e.target.value == "dateUpdated") {
+      sortedStudents = students.sort(
+        (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
+    }
+
     students = sortedStudents;
   };
   
   return (
     <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
-      <h1 className=" text-2xl md:text-3xl font-bold mb-4">Student Market</h1>
+      <h1 className=" text-2xl md:text-3xl font-bold mb-4">Find a student</h1>
       <div className=" flex flex-col items-start md:items-center mb-10 md:flex-row">
         {/* search */}
         <Form method="GET" className=" flex items-center md:mr-4 mb-2 md:mb-0">
@@ -62,6 +66,7 @@ export default function Index() {
         <select name="" id="" value={selectedOption} className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={sortBy}>
           <option value="value">Sort By</option>
           <option value="fullName">Name</option>
+          <option value="dateCreated">Last posted</option>
         </select>
       </div>
 
@@ -72,14 +77,14 @@ export default function Index() {
               <Link
                 to={`/students/${student._id}`}
                 className=" text-black">
-                  <article className=" w-full mb-6 px-4 md:px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all flex justify-between">
+                  <article className=" w-full mb-6 px-4 md:px-6 py-6 bg-white shadow-md rounded-xl hover:shadow-lg transition-all flex justify-between">
                     <div className=" flex flex-col items-start md:flex-row md:items-center">
                       {/* student image */}
                       <img src={student.studentImg} alt="Student" className=" h-24 w-24 object-cover rounded-full mr-6" />
                       {/* student data */}
                       <div>
                         <h3 className=" text-xl font-bold ">{student.fullName} <span className=" font-normal text-base">{student?.title}</span></h3>
-                        <p className=" italic ">{student.bio}</p><br />
+                        <p className=" italic max-w-xs lg:max-w-none">{student.bio}</p><br />
                           {student.tags.split(",").map(( tag, key ) => {
                             // console.log(tag);
                             return (

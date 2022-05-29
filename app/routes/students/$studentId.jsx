@@ -71,7 +71,7 @@ export default function StudentPage() {
           </div>
         ) : null}
       </div>
-      <p>{loaderData?.student?.bio}</p><br />
+      <p className=" md:max-w-xl lg:max-w-4xl">{loaderData?.student?.bio}</p><br />
       {loaderData?.student.tags.split(",").map(( tag, key ) => {
       // console.log(tag);
       return (

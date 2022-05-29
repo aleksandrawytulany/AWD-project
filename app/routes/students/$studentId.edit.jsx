@@ -64,7 +64,7 @@ const actionData = useActionData();
           placeholder="Drop your picture url here"
           className={
             actionData?.errors?.studentImg 
-            ? "border-2 border-red-500" 
+            ? "h-10 w-80 px-4 border-2 border-red-500" 
             : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         /><br /><br />
@@ -80,7 +80,7 @@ const actionData = useActionData();
           placeholder={loaderData.student.fullName}
           className={
             actionData?.errors?.fullName 
-            ? "border-2 border-red-500" 
+            ? "h-10 w-80 px-4 border-2 border-red-500" 
             : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
@@ -101,7 +101,7 @@ const actionData = useActionData();
           placeholder={loaderData.student.title}
           className={
             actionData?.errors?.ttile
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
@@ -122,7 +122,7 @@ const actionData = useActionData();
           placeholder={loaderData.student.bio}
           className={
             actionData?.errors?.bio 
-            ? "border-2 border-red-500" 
+            ? "h-10 w-80 px-4 border-2 border-red-500" 
             : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
@@ -143,7 +143,7 @@ const actionData = useActionData();
           placeholder={loaderData.student.tags}
           className={
             actionData?.errors?.tags 
-            ? "border-2 border-red-500" 
+            ? "h-10 w-80 px-4 border-2 border-red-500" 
             : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
         />
@@ -164,7 +164,7 @@ const actionData = useActionData();
           placeholder={loaderData.student.linkedinLink}
           className={
             actionData?.errors?.linkedinLink 
-            ? "border-2 border-red-500" 
+            ? "h-10 w-80 px-4 border-2 border-red-500" 
             : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
         />
@@ -185,7 +185,7 @@ const actionData = useActionData();
           placeholder={loaderData.student.websiteLink}
           className={
             actionData?.errors?.websiteLink 
-            ? "border-2 border-red-500" 
+            ? "h-10 w-80 px-4 border-2 border-red-500" 
             : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
         />

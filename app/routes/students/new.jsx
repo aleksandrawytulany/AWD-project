@@ -20,7 +20,7 @@ export async function action({ request }) {
   // const date_updated = Date.now();
   let dateCreated =
     // date.getFullYear() + " " + date.toLocaleString("default", { month: "short" }) + " " + date.getDate();
-    date.toLocaleString("default", { month: "short" }) + " " + date.getFullYear() + "," + date.getDate();
+    date.toLocaleString("default", { month: "short" }) + " " + date.getDate() + ", " + date.getFullYear();
   try {
     const newStudent = await db.models.Student.create({
       studentImg,
@@ -48,7 +48,7 @@ export default function CreateStudent() {
   const actionData = useActionData();
   return (
     <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
-      <h1 className="text-2xl font-bold mb-10">Create student profile</h1>
+      <h2 className="text-2xl font-bold mb-10">Create student profile</h2>
       <Form method="post">
 
         {/* profile picture */}
@@ -63,7 +63,7 @@ export default function CreateStudent() {
           placeholder="Drop your picture url here"
           className={
             actionData?.errors?.studentImg
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
@@ -85,7 +85,7 @@ export default function CreateStudent() {
           placeholder="fex. John Doe"
           className={
             actionData?.errors?.fullName
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
@@ -107,7 +107,7 @@ export default function CreateStudent() {
           placeholder="fex. Web Developer"
           className={
             actionData?.errors?.ttile
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
@@ -128,7 +128,7 @@ export default function CreateStudent() {
           id="bio"
           placeholder="Tell us about yourself"
           className={
-            actionData?.errors?.bio ? "border-2 border-red-500" : "h-10 w-80 px-4 focus:outline-violet-700"
+            actionData?.errors?.bio ? "h-10 w-80 px-4 border-2 border-red-500" : "h-10 w-80 px-4 focus:outline-violet-700"
           }
         />
         {actionData?.errors?.bio && <p className="text-red-500">{actionData?.errors?.bio.message}</p>}
@@ -147,7 +147,7 @@ export default function CreateStudent() {
           placeholder="fex. UI, JavaScript - separate with coma"
           className={
             actionData?.errors?.tags
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
         />
@@ -167,7 +167,7 @@ export default function CreateStudent() {
           placeholder="Link your LinkedIn profile"
           className={
             actionData?.errors?.linkedinLink
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
         />
@@ -189,7 +189,7 @@ export default function CreateStudent() {
           placeholder="Show off with your work"
           className={
             actionData?.errors?.websiteLink
-              ? "border-2 border-red-500"
+              ? "h-10 w-80 px-4 border-2 border-red-500"
               : "h-10 w-80 px-4 mr-3 focus:outline-violet-700"
           }
         />

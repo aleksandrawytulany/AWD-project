@@ -65,7 +65,7 @@ export default function Login() {
   }
   return (
     <div className=" flex flex-col justify-center items-center w-full h-screen">
-      <h1 className="text-2xl font-bold mb-10">👩‍🎓 Login to your account</h1>
+      <h2 className="text-2xl font-bold mb-10">👩‍🎓 Login to your account</h2>
       {actionData?.errorMessage ? (
         <p className="text-red-500 font-bold my-3">{actionData.errorMessage}</p>
       ) : null }
