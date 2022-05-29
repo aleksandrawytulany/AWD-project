@@ -11,11 +11,6 @@ import {
 } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import connectDb from "~/db/connectDb.server.js";
-import homeIcon from "~/assets/home-icon.svg";
-// import profileIcon from "~/assets/profile-icon.svg";
-import logoutIcon from "~/assets/logout-icon.svg";
-import studentPic from "~/assets/student-pic.svg";
-import addIcon from "~/assets/add-icon.svg";
 import styles from "~/tailwind.css";
 import { getSession } from "~/sessions.js";
 
@@ -42,7 +37,7 @@ export async function loader({ request }) {
   return json(user);
 }
 
-export default function App() {
+export default function App( {setMenuOpen, menuOpen} ) {
   const user = useLoaderData();
   // console.log(user);
   return (
@@ -54,16 +49,26 @@ export default function App() {
       <body className="bg-slate-100 text-gray-900 font-sans flex justify-between">  
         {user ? (
         <div>
-          <nav className=" w-full bg-white shadow-md h-20 text-right fixed py-2 px-10 flex items-center justify-end">
+          <nav className=" hidden lg:w-full bg-white shadow-md h-20 text-right fixed py-2 px-10 lg:flex items-center justify-end">
             <strong className=" text-violet-700">Hi there! You're logged in now 🧑🏼‍🎓</strong>
           </nav>
-          <header className=" h-full bg-white tp-0 left-0 fixed px-10 py-20 shadow-xl flex flex-col justify-between">
+          <header className= {
+            menuOpen 
+              ? "h-full bg-white tp-0 left-0 fixed px-10 py-20 shadow-xl flex flex-col justify-between"
+              : "hidden h-full bg-white tp-0 left-0 fixed px-10 py-20 shadow-xl lg:flex flex-col justify-between"
+          }>
               <div>
+              <span 
+              onClick={() => setMenuOpen(false)}
+              className={menuOpen ? "block ml-auto mr-0" : "hidden"}>❌<br /><br /></span>
                 <Link to="/" className=" hover:opacity-70 block mb-4 font-bold text-xl">
                   <h3>🏠 Home</h3>
                 </Link>
                 <Link to="/students/new" className=" hover:opacity-70 block mb-4 font-bold text-xl">
                   <h3>➕ New student</h3>
+                </Link>
+                <Link to="/account" className=" hover:opacity-70 block mb-4 font-bold text-xl">
+                  <h3>👩‍🎓 Account</h3> 
                 </Link>
                 {/* <img src={studentPic} alt="Student graphic" className=" block mb-4 mt-20 w-44" /> */}
               </div>

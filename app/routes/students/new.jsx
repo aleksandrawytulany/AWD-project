@@ -199,7 +199,7 @@ export default function CreateStudent() {
         <br />
         <br />
 
-        <button type="submit" className=" mb-6 px-8 py-2 rounded-md bg-violet-700 text-white font-bold block">
+        <button type="submit" className=" mb-6 px-8 py-2 rounded-md bg-violet-700 text-white font-bold block hover:opacity-80 transition-all">
           Save
         </button>
       </Form>

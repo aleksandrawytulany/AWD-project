@@ -1,8 +1,6 @@
 import { useLoaderData, useParams, useCatch, Form, Link } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
 import { getSession } from "~/sessions.js";
-// import deleteIcon from "~/assets/delete-icon.svg";
-// import editIcon from "~/assets/edit-icon.svg";
 import linkIcon from "~/assets/link-icon.svg";
 import linkedinIcon from "~/assets/linkedin-icon.svg";
 import Breadcrumb from "~/components/Breadcrumb.jsx";
@@ -41,9 +39,9 @@ export async function loader({ params, request }) {
 
 export default function StudentPage() {
   const loaderData = useLoaderData();
-  console.log(loaderData);
-
   const params = useParams();
+  // console.log(loaderData);
+
   return (
     <div className=" ml-64 w-full px-10 pt-32">
       <Breadcrumb links={[{ to: "/", title: "👈 Back to student list" }]} />
@@ -74,10 +72,10 @@ export default function StudentPage() {
       <p>{loaderData?.student?.bio}</p><br />
       {loaderData?.student.tags.split(",").map(( tag, key ) => {
       // console.log(tag);
-      return (
-          <p key={key} className=" px-2 py-1 bg-violet-300 text-violet-700 font-bold text-xs rounded-lg inline mr-2">{tag}</p>
-        ) 
-      })}<br /><br />
+        return (
+            <p key={key} className=" px-2 py-1 bg-violet-300 text-violet-700 font-bold text-xs rounded-lg inline mr-2">{tag}</p>
+          ) 
+        })}<br /><br />
       <a href={loaderData?.student?.linkedinLink} target="_blank" rel="noreferrer" className=" flex items-center">
         <img src={linkedinIcon} alt="LinkediIn" className=" mr-1" />
         <strong>LinkedIn</strong>
