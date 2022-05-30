@@ -1,14 +1,62 @@
 [
     {
       "_id": "6293f59537a5ad133517bd28",
+      "fullName": "Aleksandra Wytulany",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit massa enim nec dui. Facilisis magna etiam tempor orci eu.",
+      "linkedinLink": "https://www.linkedin.com/",
+      "websiteLink": "https://behance.net",
+      "title": "fRontend DEveloper",
+      "studentImg": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/280566804_2825398974272279_8174354347168289476_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=dAqNS3DuVz8AX9x4nFe&_nc_ht=scontent-cph2-1.xx&oh=00_AT8cR1ei6oGgsIUE3e666OQqYbiuWP4vjUs6k5YSl_D5dg&oe=629964D4",
+      "dateCreated": "maj 30, 2022",
+      "tags": "UX, UI, HTML, CSS",
+      "creatorId": "62924a6d6c8b1b6ab3c6b523"
+    },
+    {
+      "_id": "6293f59537a5ad133517bd2a",
       "fullName": "Mary Smith",
       "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit massa enim nec dui. Facilisis magna etiam tempor orci eu.",
-      "linkedinLink": "https://www.linkedin.com/in/aleksandra-wytulany/",
-      "websiteLink": "https://aleksandrawytulany.github.io/portfolio/",
+      "linkedinLink": "https://www.linkedin.com/",
+      "websiteLink": "https://behance.net",
       "title": "UI Designer",
       "studentImg": "https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "dateCreated": "maj 30,2022",
-      "tags": "UX, UI, HTML, CSS",
+      "dateCreated": "maj 30, 2022",
+      "tags": "UX, UI",
+      "creatorId": "62924a6d6c8b1b6ab3c6b523"
+    },
+    {
+      "_id": "6293f59537a5ad133517bd2b",
+      "fullName": "Astrid Cornish",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit massa enim nec dui. Facilisis magna etiam tempor orci eu.",
+      "linkedinLink": "https://www.linkedin.com/",
+      "websiteLink": "https://behance.net",
+      "title": "SEO Content Writer",
+      "studentImg": "https://images.unsplash.com/photo-1484863137850-59afcfe05386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
+      "dateCreated": "maj 30, 2022",
+      "tags": "Social Media, Instagram, Content, UX",
+      "creatorId": "62924a6d6c8b1b6ab3c6b523"
+    },
+    {
+      "_id": "6293f59537a5ad133517bd2c",
+      "fullName": "Lucca Roth",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit massa enim nec dui. Facilisis magna etiam tempor orci eu.",
+      "linkedinLink": "https://www.linkedin.com/",
+      "websiteLink": "https://behance.net",
+      "title": "Web Developer",
+      "studentImg": "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "dateCreated": "maj 30, 2022",
+      "tags": "JS, PHP, Python",
+      "creatorId": "62924a6d6c8b1b6ab3c6b523"
+    },
+    {
+      "_id": "6293f59537a5ad133517bd2d",
+      "fullName": "Conrad Crosby",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit massa enim nec dui. Facilisis magna etiam tempor orci eu.",
+      "linkedinLink": "https://www.linkedin.com/",
+      "websiteLink": "https://behance.net",
+      "title": "UX Designer",
+      "studentImg": "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      "dateCreated": "maj 30, 2022",
+      "tags": "UX, UI, Research",
       "creatorId": "62924a6d6c8b1b6ab3c6b523"
     }
   ]

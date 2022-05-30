@@ -27,7 +27,7 @@ console.log(loaderData.student);
         
                 {/* student profile display */}
                 {loaderData?.student?.creatorId === loaderData?.userId ? (
-                <article className=" w-full mb-6 px-6 py-4 bg-white shadow-md rounded-xl hover:shadow-lg transition-all">
+                <article className=" w-full mb-6 px-6 py-4 bg-white shadow-md rounded-xl">
                     <img src={loaderData[0].studentImg} alt="Student" className=" h-24 w-24 object-cover rounded-full mr-6 block" /><br />
                     <div className=" flex justify-between items-baseline md:items-center mb-4">
                         <h2 className="text-2xl font-bold">{loaderData[0].fullName} <span className=" font-normal text-base">{loaderData[0].title}</span></h2>
@@ -61,14 +61,14 @@ console.log(loaderData.student);
                             <strong>Portfolio</strong>
                         </a>           
                 </article>     
-        ) : (
-                <div>
-                    <p className=" inline-block mr-2">You haven't posted any student profile yet.</p>
-                    <Link to="/students/new" className=" hover:opacity-80 transition-all inline-block mb-4 font-bold text-base text-violet-700">
-                        <h3>➕ Create now</h3>
-                    </Link>
-                </div>              
-        )}                     
+                ) : 
+                    <div>
+                        <p className=" inline-block mr-2">You haven't posted any student profile yet.</p>
+                        <Link to="/students/new" className=" hover:opacity-80 transition-all inline-block mb-4 font-bold text-base text-violet-700">
+                            <h3>➕ Create now</h3>
+                        </Link>
+                    </div>              
+                }                     
     </div>
   );
 }
