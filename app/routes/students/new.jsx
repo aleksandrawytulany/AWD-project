@@ -41,21 +41,7 @@ export async function action({ request }) {
 
 export async function loader( request ) {
   const db = await connectDb();
-  const session = await getSession(request?.headers?.get("Cookie"));
-  const userId = await session?.get("userId");
-  console.log(userId);
-  const element = await db.models.Student.find({
-    fullName: "Ola",
-  })
-  console.log(element);
-
-  if(element.length > 0) {
-    return redirect("/");
-  } else {
-    return json({
-      userId: await session.get("userId"),
-    });
-  }
+  return db.models.Student.find();
 }
 
 export default function CreateStudent() {
