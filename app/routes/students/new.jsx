@@ -1,6 +1,6 @@
 import { redirect, json } from "@remix-run/node";
-import { useActionData, Form } from "@remix-run/react";
-import { getSession } from "~/sessions.js";
+import { useActionData, Form, useLoaderData } from "@remix-run/react";
+import { getSession } from "../../sessions.server";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function action({ request }) {
@@ -41,11 +41,27 @@ export async function action({ request }) {
 
 export async function loader( request ) {
   const db = await connectDb();
-  return db.models.Student.find();
+  const session = await getSession(request?.headers?.get("Cookie"));
+  const userId = await session?.get("userId");
+  console.log(userId);
+  const element = await db.models.Student.find({
+    fullName: "Ola",
+  })
+  console.log(element);
+
+  if(element.length > 0) {
+    return redirect("/");
+  } else {
+    return json({
+      userId: await session.get("userId"),
+    });
+  }
 }
 
 export default function CreateStudent() {
   const actionData = useActionData();
+  const loaderData = useLoaderData();
+  console.log(loaderData);
   return (
     <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
       <h2 className="text-2xl font-bold mb-10">Create a student profile</h2>

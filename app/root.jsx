@@ -13,7 +13,7 @@ import { useState } from "react";
 import { json } from "@remix-run/node";
 import connectDb from "~/db/connectDb.server.js";
 import styles from "~/tailwind.css";
-import { getSession } from "~/sessions.js";
+import { getSession } from "~/sessions.server.js";
 import logo from "~/assets/logo.svg";
 import menuIcon from "~/assets/menu-icon.svg";
 
@@ -56,7 +56,7 @@ export const links = () => [
 
 export const meta = () => [
   {
-    charset: "utf-8",
+    charSet: "utf-8",
     title: "Student Market",
     viewport: "width=device-width,initial-scale=1",
   },

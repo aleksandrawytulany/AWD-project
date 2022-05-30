@@ -2,7 +2,7 @@ import { redirect } from "@remix-run/node";
 import { useLoaderData, Link, Form } from "@remix-run/react";
 import { useState } from "react";
 import connectDb from "~/db/connectDb.server.js";
-import { getSession } from "~/sessions.js";
+import { getSession } from "~/sessions.server.js";
 
 export async function loader({ params, request }) {
   const url = new URL(request.url);
@@ -30,9 +30,10 @@ export async function loader({ params, request }) {
 
 export default function Index() {
   const [selectedOption, setSelectedOption] = useState();
-  const [selectedFilter, setSelectedFilter] = useState();
+  const [selectedFilter, setSelectedFilter] = useState("");
   let students = useLoaderData();
   let sortedStudents = [];
+  console.log(selectedFilter);
 
   const sortBy = (e) => {
     setSelectedOption(e.target.value);
@@ -52,30 +53,6 @@ export default function Index() {
     // }
 
     students = sortedStudents;
-  };
-
-  const filter = (e) => {
-    setSelectedFilter(e.target.value);
-    let filteredStudents = [];
-
-    if (e.target.value == "tags") {
-      filteredStudents = students.filter(
-        (student) => student.tags === "UX"
-      );
-    }
-
-    if (e.target.value == "tags") {
-      filteredStudents = students.filter(
-        (student) => student.tags === "UI Design"
-      );
-    }
-
-    // if (e.target.value == "all") {
-    //   // filteredStudents = data;
-    //   students = filteredStudents;
-    // }
-    students = filteredStudents;
-    console.log(filteredStudents);
   };
   
   return (
@@ -109,17 +86,29 @@ export default function Index() {
             <label className="block font-bold text-xs mb-2">
               Filter
             </label>
-            <select className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={filter} value={selectedFilter}>
-              <option value="value">All</option>
-              <option value="tags">UX</option>
-              <option value="tags">UI Design</option>
+            <select className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={(e) => {
+              setSelectedFilter(e.target.value);
+            }} value={selectedFilter}>
+              <option value="All">All</option>
+              <option value="UX">UX</option>
+              <option value="UI">UI</option>
+              <option value="Web Deveopment">Web Deveopment</option>
+              <option value="JS">JavaScript</option>
+              <option value="Graphics">Graphics</option>
+              <option value="Social Media">Social Media</option>
             </select>
           </div>
         </div>
       </div>
 
       <ul>
-        {students.map((student) => {
+        {students.filter((post) => {
+          if(selectedFilter === "" || selectedFilter === "All") {
+            return post;
+          } else {
+            return post?.tags?.toLowerCase().includes(selectedFilter.toLowerCase())
+          }
+        }).map((student) => {
           return (
             <li key={student._id} className=" list-none">
               <Link

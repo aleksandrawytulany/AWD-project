@@ -1,6 +1,6 @@
 import { useLoaderData, useParams, useCatch, Form, Link } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
-import { getSession } from "~/sessions.js";
+import { getSession } from "~/sessions.server.js";
 // import deleteIcon from "~/assets/delete-icon.svg";
 // import editIcon from "~/assets/edit-icon.svg";
 import linkIcon from "~/assets/link-icon.svg";

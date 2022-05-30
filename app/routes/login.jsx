@@ -1,7 +1,7 @@
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
 import bcrypt from "bcryptjs";
-import { getSession, commitSession } from "~/sessions.js";
+import { getSession, commitSession } from "~/sessions.server.js";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function action({ request }) {
@@ -47,6 +47,7 @@ export async function loader({ request }) {
 export default function Login() {
   const { userId } = useLoaderData();
   const actionData = useActionData();
+  console.log(userId);
 
   if (userId) {
     return (
