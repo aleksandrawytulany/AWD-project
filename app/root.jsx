@@ -92,14 +92,14 @@ export default function App() {
       <body className="bg-slate-100 text-gray-900 font-sans flex justify-between">  
         {user ? (
         <div>
-          <nav className=" w-full bg-white shadow-md h-20 text-right fixed py-2 px-10 flex items-center lg:justify-end">
-            <img src={menuIcon} alt="Menu icon" className=" lg:hidden block" onClick={() => setMenuOpen(true)} />
-            <strong className=" hidden lg:inline text-violet-700">Hi there! You're logged in now 🧑🏼‍🎓</strong>
+          <nav className=" w-full bg-white shadow-md h-20 text-right fixed py-2 px-4 md:px-10 flex items-center md:justify-end">
+            <img src={menuIcon} alt="Menu icon" className=" md:hidden block" onClick={() => setMenuOpen(true)} />
+            <strong className=" hidden md:inline text-violet-700">Hi there! You're logged in now 🧑🏼‍🎓</strong>
           </nav>
           <header className= {
             menuOpen 
               ? "h-full bg-white tp-0 left-0 fixed px-8 md:px-10 py-8 shadow-xl flex flex-col justify-between w-full md:w-auto"
-              : "hidden h-full bg-white tp-0 left-0 fixed px-10 py-8 shadow-xl lg:flex flex-col justify-between"
+              : "hidden h-full bg-white tp-0 left-0 fixed px-10 py-8 shadow-xl md:flex flex-col justify-between"
           }>
               <div className=" flex justify-between items-center">
                 <img src={logo} alt="Pltform logo" className=" md:mb-10 w-56 md:w-auto" />

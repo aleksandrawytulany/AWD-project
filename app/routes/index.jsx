@@ -80,41 +80,42 @@ export default function Index() {
   
   return (
     <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
-      <h1 className=" text-2xl md:text-3xl font-bold mb-4">Find a student</h1>
-      <div className=" flex flex-col items-start md:items-end mb-10 md:flex-row">
+      <h1 className=" text-2xl md:text-3xl font-bold mb-4">Student Portal</h1>
+      <div className=" flex flex-col float-left items-start lg:items-end mb-10 lg:flex-row">
         {/* search */}
-        <Form method="GET" className=" flex items-center md:mr-4 mb-2 md:mb-0">
-          <input type="text" name="q" placeholder="Search by name" className=" w-56 h-10 lg:w-80 px-4 mr-2 focus:outline-violet-700" />
-          <button type="submit" className=" h-10 px-4 md:px-8 py-2 rounded-md bg-violet-700 text-white font-bold flex-nowrap hover:opacity-80 transition-all">
+        <Form method="GET" className=" flex items-center w-full md:w-auto md:mr-4 mb-2 lg:mb-0">
+          <input type="text" name="q" placeholder="Search by name" className=" w-full md:w-80 h-10 px-4 mr-2 focus:outline-violet-700" />
+          <button type="submit" className=" h-10 px-4 md:px-8 py-2 rounded-md bg-violet-700 text-white font-bold whitespace-nowrap hover:opacity-80 transition-all">
             🔍 Search
           </button>
         </Form>
 
-        {/* sort by */}
-        <div>
-          <label className="block font-bold text-xs mb-2">
-            Sort by
-          </label>
-          <select name="" id="" value={selectedOption} className=" h-10 w-40 px-4 focus:outline-violet-700 mr-2" onChange={sortBy}>
-            <option value="value">Sort By</option>
-            <option value="fullName">Name</option>
-            <option value="dateCreated">Last posted</option>
-            {/* <option value="uiDesign">UI Design</option> */}
-          </select>
-        </div>
+      <div className=" flex justify-center flex-row">
+          {/* sort by */}
+          <div>
+            <label className="block font-bold text-xs mb-2">
+              Sort by
+            </label>
+            <select name="" id="" value={selectedOption} className=" h-10 w-40 px-4 focus:outline-violet-700 mr-2" onChange={sortBy}>
+              <option value="value">Sort By</option>
+              <option value="fullName">Name</option>
+              <option value="dateCreated">Last posted</option>
+              {/* <option value="uiDesign">UI Design</option> */}
+            </select>
+          </div>
 
-        {/* filters */}
-        <div>
-          <label className="block font-bold text-xs mb-2">
-            Filter
-          </label>
-          <select className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={filter} value={selectedFilter}>
-            <option value="value">All</option>
-            <option value="tags">UX</option>
-            <option value="tags">UI Design</option>
-          </select>
+          {/* filters */}
+          <div>
+            <label className="block font-bold text-xs mb-2">
+              Filter
+            </label>
+            <select className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={filter} value={selectedFilter}>
+              <option value="value">All</option>
+              <option value="tags">UX</option>
+              <option value="tags">UI Design</option>
+            </select>
+          </div>
         </div>
-
       </div>
 
       <ul>
@@ -125,12 +126,12 @@ export default function Index() {
                 to={`/students/${student._id}`}
                 className=" text-black">
                   <article className=" w-full mb-6 px-4 md:px-6 py-6 bg-white shadow-md rounded-xl hover:shadow-lg transition-all flex justify-between">
-                    <div className=" flex flex-col items-start md:flex-row md:items-center">
+                    <div className=" flex flex-col items-start lg:flex-row lg:items-center">
                       {/* student image */}
                       <img src={student.studentImg} alt="Student" className=" h-24 w-24 object-cover rounded-full mr-6" />
                       {/* student data */}
                       <div>
-                        <h3 className=" text-xl font-bold ">{student.fullName} <span className=" font-normal text-base">{student?.title}</span></h3>
+                        <h3 className=" text-xl font-bold my-2">{student.fullName} <span className=" font-normal text-base">{student?.title}</span></h3>
                         <p className=" italic max-w-xs lg:max-w-none">{student.bio}</p><br />
                           {student.tags.split(",").map(( tag, key ) => {
                             // console.log(tag);

@@ -53,18 +53,18 @@ export default function StudentPage() {
         alt="Student"
         className=" h-24 w-24 object-cover rounded-full mr-6 block"
       /><br />
-      <div className=" flex justify-between items-center mb-4">
+      <div className=" flex justify-between items-baseline md:items-center mb-4">
         <h2 className="text-2xl font-bold">{loaderData?.student?.fullName} <span className=" font-normal text-base">{loaderData?.student?.title}</span></h2>
         {loaderData?.student?.creatorId === loaderData?.userId ? (
           <div className=" flex items-center">
             <Link to={`/students/${params.studentId}/edit`}>
-              <button className=" px-8 py-2 rounded-md text-violet-700 font-bold">
+              <button className=" px-8 py-2 rounded-md text-violet-700 font-bold whitespace-nowrap hover:opacity-80 transition-all">
               ✍️ Edit
               </button>
             </Link>
             <Form method="post">
               <input type="hidden" name="_method" value="delete" />
-              <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold hover:opacity-80 transition-all">
+              <button type="submit" className=" px-8 py-2 rounded-md bg-violet-700 text-white font-bold whitespace-nowrap hover:opacity-80 transition-all">
               🗑️ Delete
               </button>
             </Form>

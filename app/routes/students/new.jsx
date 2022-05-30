@@ -48,7 +48,7 @@ export default function CreateStudent() {
   const actionData = useActionData();
   return (
     <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
-      <h2 className="text-2xl font-bold mb-10">Create student profile</h2>
+      <h2 className="text-2xl font-bold mb-10">Create a student profile</h2>
       <Form method="post">
 
         {/* profile picture */}
@@ -200,7 +200,7 @@ export default function CreateStudent() {
         <br />
 
         <button type="submit" className=" mb-6 px-8 py-2 rounded-md bg-violet-700 text-white font-bold block">
-          Save
+        👍 Save
         </button>
       </Form>
     </div>
