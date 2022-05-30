@@ -10,7 +10,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { useState } from "react";
-import { json } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import connectDb from "~/db/connectDb.server.js";
 import styles from "~/tailwind.css";
 import { getSession } from "~/sessions.server.js";
@@ -75,6 +75,20 @@ export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
   const userId = session.get("userId");
   const user = await db.models.User.findById(userId);
+
+  const element = await db.models.Student.find({
+    fullName: "Ola",
+  })
+  console.log(element);
+
+  if(element.length > 0) {
+    return redirect("/");
+  } else {
+    return json({
+      userId: await session.get("userId"),
+    });
+  }
+
   return json(user);
 }
 
