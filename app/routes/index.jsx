@@ -30,6 +30,7 @@ export async function loader({ params, request }) {
 
 export default function Index() {
   const [selectedOption, setSelectedOption] = useState();
+  const [selectedFilter, setSelectedFilter] = useState();
   let students = useLoaderData();
   let sortedStudents = [];
 
@@ -46,28 +47,74 @@ export default function Index() {
         (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
     }
 
+    // if (e.target.value == "uiDesign") {
+    //   sortedStudents = students.filter((student) => student.tags === "UI Design")
+    // }
+
     students = sortedStudents;
+  };
+
+  const filter = (e) => {
+    setSelectedFilter(e.target.value);
+    let filteredStudents = [];
+
+    if (e.target.value == "tags") {
+      filteredStudents = students.filter(
+        (student) => student.tags === "UX"
+      );
+    }
+
+    if (e.target.value == "tags") {
+      filteredStudents = students.filter(
+        (student) => student.tags === "UI Design"
+      );
+    }
+
+    // if (e.target.value == "all") {
+    //   // filteredStudents = data;
+    //   students = filteredStudents;
+    // }
+    students = filteredStudents;
+    console.log(filteredStudents);
   };
   
   return (
     <div className=" m-0 md:ml-64 w-full px-4 md:px-10 pt-28 md:pt-32">
       <h1 className=" text-2xl md:text-3xl font-bold mb-4">Find a student</h1>
-      <div className=" flex flex-col items-start md:items-center mb-10 md:flex-row">
+      <div className=" flex flex-col items-start md:items-end mb-10 md:flex-row">
         {/* search */}
         <Form method="GET" className=" flex items-center md:mr-4 mb-2 md:mb-0">
-          <input type="text" name="q" placeholder="Search" className=" w-56 h-10 lg:w-80 px-4 mr-2 focus:outline-violet-700" />
+          <input type="text" name="q" placeholder="Search by name" className=" w-56 h-10 lg:w-80 px-4 mr-2 focus:outline-violet-700" />
           <button type="submit" className=" h-10 px-4 md:px-8 py-2 rounded-md bg-violet-700 text-white font-bold flex-nowrap hover:opacity-80 transition-all">
-            {/* <img src={searchIcon} alt="Search" /> */}
             🔍 Search
           </button>
         </Form>
 
-        {/* filter */}
-        <select name="" id="" value={selectedOption} className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={sortBy}>
-          <option value="value">Sort By</option>
-          <option value="fullName">Name</option>
-          <option value="dateCreated">Last posted</option>
-        </select>
+        {/* sort by */}
+        <div>
+          <label className="block font-bold text-xs mb-2">
+            Sort by
+          </label>
+          <select name="" id="" value={selectedOption} className=" h-10 w-40 px-4 focus:outline-violet-700 mr-2" onChange={sortBy}>
+            <option value="value">Sort By</option>
+            <option value="fullName">Name</option>
+            <option value="dateCreated">Last posted</option>
+            {/* <option value="uiDesign">UI Design</option> */}
+          </select>
+        </div>
+
+        {/* filters */}
+        <div>
+          <label className="block font-bold text-xs mb-2">
+            Filter
+          </label>
+          <select className=" h-10 w-40 px-4 focus:outline-violet-700" onChange={filter} value={selectedFilter}>
+            <option value="value">All</option>
+            <option value="tags">UX</option>
+            <option value="tags">UI Design</option>
+          </select>
+        </div>
+
       </div>
 
       <ul>
